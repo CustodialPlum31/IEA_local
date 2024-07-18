@@ -1,0 +1,48 @@
+<%- include("partials/_header2") %>
+
+<div class="container mt-5 text-center">
+  <h1 class="mb-4">Pedir Préstamo</h1>
+  <form action="/solcomponente/pedir/:id_c/:cantidad" method="POST" class="d-inline-block">
+      <div class="form-row">
+          <div class="form-group col-md-15">
+              <label for="componentes"> <strong>Componente </strong></label>
+              <select class="form-control" name="componentes" id="componentes">
+                  <% componentes.forEach(componente => { %>
+                      <option value="<%= componente.id_c %>" data-cantidad="<%= componente.cantidad %>" data-valor="<%= componente.valor %>">
+                          <%= componente.nombre %> - Valor: <%= componente.valor %>
+                      </option>
+                  <% }); %>
+              </select>
+          </div>
+          <div class="form-group col-md-10">
+              <label for="num_componentes"> <strong> Cantidad disponible</strong> </label>
+              <input type="text" class="form-control" id="num_componentes" name="num_componentes" readonly>
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="cantidad"> <strong>Cantidad que deseas tomar</strong> </label>
+          <input type="number" class="form-control" id="cantidad" name="cantidad">
+      </div>
+      <button type="submit" class="btn btn-info mt-3">Pedir préstamo</button>
+  </form>
+</div>
+
+<%- include("partials/_footer") %>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const selectComponentes = document.getElementById('componentes');
+  const numComponentesInput = document.getElementById('num_componentes');
+
+  function updateNumComponentes() {
+    const selectedOption = selectComponentes.options[selectComponentes.selectedIndex];
+    numComponentesInput.value = selectedOption.getAttribute('data-cantidad');
+  }
+
+  // Initial update
+  updateNumComponentes();
+
+  // Update when selection changes
+  selectComponentes.addEventListener('change', updateNumComponentes);
+});
+</script>

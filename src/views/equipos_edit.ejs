@@ -1,0 +1,36 @@
+<%- include("partials/_header") %>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <form action="/equipo/update/<%= data.id_e %>" method="POST">
+                    <input
+                      type="text"
+                      name="nombre"
+                      value="<%= data.nombre %>"
+                      class="form-control mb-2"
+                      autofocus
+                    />
+                    <input
+                      type="text"
+                      name="descripcion"
+                      value="<%= data.descripcion %>"
+                      class="form-control mb-2"
+                    />
+                    <input
+                      type="text"
+                      name="No_serie"
+                      value="<%= data.No_serie %>"
+                      class="form-control mb-2"
+                    />
+                    <button type="submit" class="btn btn-info">Editar equipo</button>
+                  </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<%- include("partials/_footer") %>

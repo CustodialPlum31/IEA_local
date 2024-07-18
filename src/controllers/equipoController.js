@@ -46,7 +46,9 @@ controller.update = (req,res) => {//UPDATE
 
 
 controller.delete = (req,res) => {
+   
   const {id_e} = req.params;
+  console.log(id_e);
    req.getConnection((err,conn) => {
     conn.query('DELETE FROM equipo WHERE id_e = ?',[id_e],(err, rows) => {
         res.redirect('/equipo')

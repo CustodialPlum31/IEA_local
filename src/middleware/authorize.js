@@ -9,7 +9,7 @@ const authorize = (roles) => {
             //console.log('Role permitido:', req.user.role);
             next();
         } else {
-            console.log('Role prohibido:', req.user.role);
+            //console.log('Role prohibido:', req.user.role);
             res.status(403).send('No tienes rango suficiente');
         }
     };
